@@ -1,30 +1,30 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, View, Text} from 'react-native';
+import { StyleSheet} from 'react-native';
 import { Login } from './components/main/Login';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Dashboard } from './components/logged/Dashboard';
+const Stack = createStackNavigator()
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Family Social</Text>
-      <Login/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen
+          name='Login'
+          component={Login}
+          options={{title: 'Family Social'}}
+        />
+        <Stack.Screen
+          name='Dashboard'
+          component={Dashboard}
+          options={{title: 'Family Social'}}
+
+        />
+
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  header: {
-    position: 'absolute',
-    top: '20%',
-    fontSize: 33,
-    left: 0,
-    right: 0,
-    textAlign: 'center',
-
-}
-
-});

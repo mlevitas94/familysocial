@@ -1,30 +1,50 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, TouchableOpacity, Text, Image } from 'react-native';
+import { StyleSheet, SafeAreaView, View, TouchableOpacity, Text, Image } from 'react-native';
 
-export const Login = () => {
+export const Login = ({ navigation }) => {
     return (
-        <SafeAreaView>
-            <TouchableOpacity style={[styles.button]}>
-                <Image source={require('../../assets/googleBtn.png')}/>
-                <Text style={[styles.buttonText]}>Sign in With Google</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button]}>
-                <Text style={[styles.buttonText]}>Sign In</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button]}>
-                <Text style={[styles.buttonText]}>Create Account </Text>
-            </TouchableOpacity>
-        </SafeAreaView>
+        <View style={styles.container}>
+            <SafeAreaView>
+                <TouchableOpacity
+                    style={[styles.button, { marginBottom: 44 }]}
+                    onPress={() => {
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'Dashboard' }],
+                        });
+                    }
+                    }
+                >
+                    <Image
+                        style={{ width: 200, resizeMode: 'contain' }}
+                        source={require('../../assets/googleBtn.png')} />
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.button]}>
+                    <Text style={[styles.buttonText]}>Sign In</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.button]}>
+                    <Text style={[styles.buttonText]}>Create Account </Text>
+                </TouchableOpacity>
+            </SafeAreaView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
-button : {
-    backgroundColor:'red',
-},
-buttonText: {
-    fontSize:22,
-    textAlign: 'center'
-}
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    button: {
+        marginTop: 44
+    },
+    buttonText: {
+        fontSize: 22,
+        textAlign: 'center',
+        borderColor: 'black',
+        borderWidth: 1,
+        padding: 5
+    }
 
 });
