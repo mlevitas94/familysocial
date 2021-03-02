@@ -7,7 +7,8 @@ import variables from '../../../styleLists/variables'
 
 
 
-export const Groups = () => {
+export const Groups = (props) => {
+    console.log(props)
     return (
         <View style={{ alignItems: 'center' }}>
             <Text style={{ textAlign: 'center', marginTop: 44, marginBottom: 44 }}>You are not in any groups.</Text>
@@ -17,8 +18,6 @@ export const Groups = () => {
                     <Text style={{color:variables.buttonColor1}}>Create Group</Text>
                 </View>
             </TouchableOpacity>
-
-
         </View>
     );
 }
