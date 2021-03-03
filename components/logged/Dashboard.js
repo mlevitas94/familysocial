@@ -9,7 +9,9 @@ import { useState } from 'react';
 const Tab = createBottomTabNavigator();
 
 export const Dashboard = () => {
-    const [accountInfo, setAccountInfo] = useState({})
+    const [accountInfo, setAccountInfo] = useState({
+        groups: [1,2]
+    })
     return (
         <Tab.Navigator>
             <Tab.Screen name="Groups" options={{
