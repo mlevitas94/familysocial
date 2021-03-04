@@ -60,8 +60,14 @@ export const Groups = (props) => {
                     <Pressable onPress={() => setModalVisible(false)}>
                         <FontAwesomeIcon icon={faTimes} />
                     </Pressable>
+                    <View>
+                        <Text style={{ textAlign: 'center', marginBottom: 44, marginTop: 44 }}>Groups can have a maximum of 12 people.</Text>
+                        <Text style={{ textAlign: 'center' }}>Once you create a group, you can invite members via text or group ID</Text>
+                    </View>
+                    <View>
+                     
+                    </View>
                 </SafeAreaView>
-
             </Modal>
         </View >
 
