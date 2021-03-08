@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Groups } from './loggedComponents/Groups';
+import { Groups } from './loggedComponents/Groups/Groups';
 import { VChats } from './loggedComponents/VChats';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUsers, faVideo } from '@fortawesome/free-solid-svg-icons'

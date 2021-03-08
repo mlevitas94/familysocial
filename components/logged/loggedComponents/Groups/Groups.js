@@ -1,17 +1,18 @@
-import { faCheck, faCheckCircle, faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import { useState } from 'react';
-import { Text, View, StyleSheet, Modal, SafeAreaView, Pressable } from 'react-native';
+import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import variables from '../../../styleLists/variables'
+import variables from '../../../../styleLists/variables'
+import { GroupsModals } from './GroupsModals';
 
 
 
 export const Groups = (props) => {
     const { accountInfo } = props
 
-    const [modalVisible, setModalVisible] = useState(false)
+    const [modalSelected, setSelectedModal] = useState('')
 
     return (
         <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
@@ -45,34 +46,17 @@ export const Groups = (props) => {
 
                     </>
             }
-            <TouchableOpacity style={{ width: 120 }} onPress={() => setModalVisible(true)}>
+            <TouchableOpacity style={{ width: 120 }} onPress={() => setSelectedModal('create')}>
                 <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'center' }}>
                     <FontAwesomeIcon icon={faPlusCircle} style={{ marginRight: 5, color: variables.buttonColor1 }} />
                     <Text style={{ color: variables.buttonColor1 }}>Create Group</Text>
                 </View>
             </TouchableOpacity>
 
-            <Modal
-                animationType="slide"
-                visible={modalVisible}
-            >
-                <SafeAreaView>
-                    <Pressable onPress={() => setModalVisible(false)}>
-                        <FontAwesomeIcon icon={faTimes} />
-                    </Pressable>
-                    <View>
-                        <Text style={{ textAlign: 'center', marginBottom: 44, marginTop: 44 }}>Groups can have a maximum of 12 people.</Text>
-                        <Text style={{ textAlign: 'center' }}>Once you create a group, you can invite members via text or group ID</Text>
-                    </View>
-                    <View>
-                     
-                    </View>
-                </SafeAreaView>
-            </Modal>
+            <GroupsModals modalSelected={modalSelected} setSelectedModal={setSelectedModal}/>
+
         </View >
 
     );
 }
-const styles = StyleSheet.create({
 
-})
