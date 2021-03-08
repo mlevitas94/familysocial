@@ -14,6 +14,8 @@ export const Groups = (props) => {
 
     const [modalSelected, setSelectedModal] = useState('')
 
+    const [selectedImage, setSelectedImage] = useState(null)
+
     return (
         <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
             {
@@ -53,7 +55,12 @@ export const Groups = (props) => {
                 </View>
             </TouchableOpacity>
 
-            <GroupsModals modalSelected={modalSelected} setSelectedModal={setSelectedModal}/>
+            <GroupsModals 
+            modalSelected={modalSelected} 
+            setSelectedModal={setSelectedModal}
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
+            />
 
         </View >
 

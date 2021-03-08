@@ -5,8 +5,14 @@ import { Pressable, Text, View, StyleSheet, Button } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler';
 import { SelectedModal } from '../../../modules/Modal';
 import * as ImagePicker from 'expo-image-picker'
+import { useEffect } from 'react';
 
-export const GroupsModals = ({ modalSelected, setSelectedModal }) => {
+export const GroupsModals = ({ modalSelected, setSelectedModal, selectedImage, setSelectedImage }) => {
+    useEffect(() => {
+        return () => {
+            setSelectedImage(null)
+        }
+    },[])
     return (
         <View>
             {
@@ -29,13 +35,18 @@ export const GroupsModals = ({ modalSelected, setSelectedModal }) => {
                                     if (status === 'denied') {
                                         return setSelectedModal('denied')
                                     }
-                                    ImagePicker.launchImageLibraryAsync({ mediaType: 'photo' }, (response) => {
-                                        console.log(response)
-                                    })
+                                    const result = await ImagePicker.launchImageLibraryAsync({ mediaType: ImagePicker.MediaTypeOptions.Images })
+                                    setSelectedImage('not null')
                                 }}>
-                                    <View style={{ marginRight: 'auto', marginLeft: 'auto', borderColor: 'black', borderWidth: 1, padding: 44 }}>
-                                        <FontAwesomeIcon icon={faImage} size={70} />
-                                    </View>
+                                    {
+                                        selectedImage === null ?
+                                            <View style={{ marginRight: 'auto', marginLeft: 'auto', borderColor: 'black', borderWidth: 1, padding: 44 }}>
+                                                <FontAwesomeIcon icon={faImage} size={70} />
+                                            </View>
+                                            :
+                                            <Text>Image here</Text>
+
+                                    }
                                 </Pressable>
                                 <Button title='Create Group' />
                             </View>
@@ -44,7 +55,7 @@ export const GroupsModals = ({ modalSelected, setSelectedModal }) => {
                     :
                     modalSelected === 'denied' ?
                         <SelectedModal setSelectedModal={setSelectedModal}>
-                            <Text style={{textAlign:'center', marginTop:44}}>To select a photo from your device, please allow photo permissions in your device settings</Text>
+                            <Text style={{ textAlign: 'center', marginTop: 44 }}>To select a photo from your device, please allow photo permissions in your device settings</Text>
                         </SelectedModal>
                         :
                         null
