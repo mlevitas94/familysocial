@@ -1,4 +1,4 @@
-import { faImage, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import React from 'react'
 import { Pressable, Text, View, StyleSheet, Button } from 'react-native'
@@ -26,10 +26,12 @@ export const GroupsModals = ({ modalSelected, setSelectedModal }) => {
                                 <Pressable style={{ marginBottom: 44 }} onPress={async () => {
                                     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-                                    console.log(status)
-                                    // ImagePicker.launchImageLibraryAsync({ mediaType: 'photo' }, (response) => {
-                                    //     console.log(response)
-                                    // })
+                                    if (status === 'denied') {
+                                        return setSelectedModal('denied')
+                                    }
+                                    ImagePicker.launchImageLibraryAsync({ mediaType: 'photo' }, (response) => {
+                                        console.log(response)
+                                    })
                                 }}>
                                     <View style={{ marginRight: 'auto', marginLeft: 'auto', borderColor: 'black', borderWidth: 1, padding: 44 }}>
                                         <FontAwesomeIcon icon={faImage} size={70} />
@@ -40,7 +42,12 @@ export const GroupsModals = ({ modalSelected, setSelectedModal }) => {
                         </View>
                     </SelectedModal>
                     :
-                    null
+                    modalSelected === 'denied' ?
+                        <SelectedModal setSelectedModal={setSelectedModal}>
+                            <Text style={{textAlign:'center', marginTop:44}}>To select a photo from your device, please allow photo permissions in your device settings</Text>
+                        </SelectedModal>
+                        :
+                        null
             }
         </View>
     )
