@@ -8,6 +8,9 @@ export const SelectedModal = (props) => {
         <Modal
             animationType="slide"
             visible={true}
+            onDismiss={() => {
+                props.dismissFunction()
+            }}
         >
             <SafeAreaView>
                 <Pressable onPress={() => props.setSelectedModal('')}>

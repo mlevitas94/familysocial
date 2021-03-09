@@ -14,7 +14,10 @@ export const Groups = (props) => {
 
     const [modalSelected, setSelectedModal] = useState('')
 
-    const [selectedImage, setSelectedImage] = useState(null)
+    const [newGroupInfo, setNewGroupInfo] = useState({
+        image:null,
+        name:''
+    })
 
     return (
         <View style={{ alignItems: 'center', justifyContent: 'flex-start' }}>
@@ -58,8 +61,8 @@ export const Groups = (props) => {
             <GroupsModals 
             modalSelected={modalSelected} 
             setSelectedModal={setSelectedModal}
-            selectedImage={selectedImage}
-            setSelectedImage={setSelectedImage}
+            newGroupInfo={newGroupInfo}
+            setNewGroupInfo={setNewGroupInfo}
             />
 
         </View >
