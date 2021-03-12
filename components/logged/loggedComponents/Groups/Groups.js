@@ -7,11 +7,13 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import variables from '../../../../styleLists/variables'
 import { GroupsModals } from './GroupsModals';
 import { createStackNavigator } from '@react-navigation/stack';
+import { Chat } from './Chat/Chat';
 const Stack = createStackNavigator()
 
 export const Groups = (props) => {
     const { accountInfo } = props
     const [modalSelected, setSelectedModal] = useState('')
+    const [messages, setMessages] = useState(null)
     const [newGroupInfo, setNewGroupInfo] = useState({
         image: null,
         name: ''
@@ -19,7 +21,7 @@ export const Groups = (props) => {
 
     return (
         <Stack.Navigator
-        headerMode='screen'>
+            headerMode='screen'>
             <Stack.Screen
                 name='Groups'
                 options={{ title: 'Groups' }}>
@@ -41,8 +43,11 @@ export const Groups = (props) => {
                                                 return (
                                                     <Pressable
                                                         key={i}
-                                                        style={{ height: '20%', width: '80%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#c1c1c1', marginBottom: 22, marginTop: 22, borderRadius: 100 }}
-                                                        onPress={() => props.navigation.push('Chat')}>
+                                                        style={{ height: 100, width: '80%', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#c1c1c1', marginBottom: 22, marginTop: 22, borderRadius: 100 }}
+                                                        onPress={() => {
+                                                            setMessages(group.messages)
+                                                            props.navigation.push('Chat')
+                                                        }}>
                                                         <View style={{ width: 50, height: 50, backgroundColor: 'red', borderRadius: '50%', marginLeft: 11 }}>
 
                                                         </View>
@@ -83,9 +88,7 @@ export const Groups = (props) => {
                 options={{ title: 'Chat' }}>
                 {
                     () => (
-                        <View>
-                            <Text>hello</Text>
-                        </View>
+                        <Chat messages={messages} setMessages={setMessages} />
                     )
                 }
             </Stack.Screen>

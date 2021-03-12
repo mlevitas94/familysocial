@@ -10,7 +10,21 @@ const Tab = createBottomTabNavigator();
 
 export const Dashboard = () => {
     const [accountInfo, setAccountInfo] = useState({
-        groups: [1,2]
+        groups: [
+            {
+                groupName : 'name1',
+                messages : [1,2,3]
+            },
+            {
+                groupName : 'name2',
+                messages : [1,2,3,4,5,6]
+            },
+            {
+                groupName : 'name3',
+                messages : [1,2]
+            }
+        ],
+
     })
     return (
         <Tab.Navigator>

@@ -3,10 +3,25 @@ import { Text, View } from 'react-native';
 
 
 
-export const Chat = () => {
+export const Chat = ({messages, setMessages}) => {
+    const received = (
+        <Text>received</Text>
+    )
+
+    const sent = (
+        <Text>sent</Text>
+    )
     return (
         <View>
-            <Text>This is a chat bro</Text>
+            {
+                messages.map(message => {
+                    return(
+                        <View>
+                            
+                        </View>
+                    )
+                })
+            }
         </View>
     );
 }
